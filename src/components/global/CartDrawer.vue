@@ -1,6 +1,11 @@
 <template>
   <div class="drawer">
-    <v-navigation-drawer location="right" v-model="drawer">
+    <v-navigation-drawer
+      :app="true"
+      location="right"
+      temporary
+      v-model="drawer"
+    >
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique ullam
         tempore corrupti ipsam, magni cum, quidem obcaecati veritatis tenetur

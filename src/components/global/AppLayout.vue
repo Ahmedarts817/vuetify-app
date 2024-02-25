@@ -1,27 +1,23 @@
 <template>
   <div class="layout">
-    <v-layout>
+    <v-layout class="position-relative">
       <CartDrawer />
-
       <AppNav />
-      <v-main>
+      <AppFooter />
+      <v-main style="padding-top: 130px">
         <slot></slot>
       </v-main>
-      <AppFooter />
     </v-layout>
   </div>
 </template>
 <script>
+import CartDrawer from "./CartDrawer.vue";
 import AppNav from "./AppNav.vue";
 import AppFooter from "./AppFooter.vue";
-import CartDrawer from "./CartDrawer.vue";
 export default {
-  data: () => ({
-    drawer: false,
-  }),
   components: {
-    AppNav,
     CartDrawer,
+    AppNav,
     AppFooter,
   },
 };
