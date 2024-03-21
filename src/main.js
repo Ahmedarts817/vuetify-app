@@ -20,6 +20,8 @@ const vuetify = createVuetify({
 //Mitt config
 import mitt from "mitt";
 const Emitter = mitt();
+//swipper config
+import "swiper/css";
 
 createApp(App)
   .use(vuetify)

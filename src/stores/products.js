@@ -1,15 +1,15 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 
-export const productsModule = defineStore("productsMoule", {
+export const productsModule = defineStore("productsModule", {
   state: () => ({
-    flashdeals: [],
+    products: [],
   }),
   actions: {
     async getProducts() {
       await axios
-        .get("https://dummyjson.com/products")
-        .then((data) => (this.flashdeals = data.data.products.slice(0, 8)))
+        .get("http://localhost:8000/api/v1/products")
+        .then((data) => (this.products = data.data.data))
         .catch((err) => console.log(err));
     },
   },
