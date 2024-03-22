@@ -1,5 +1,7 @@
 <template>
   <div class="flash-deal pa-5">
+    <h3 class="mb-5">Flash Deals</h3>
+
     <swiper
       :pagination="{ clickable: true }"
       navigation
@@ -15,7 +17,7 @@
             <div class="image-parent" style="height: 200px; overflow: hidden">
               <img
                 class="w-100 h-100"
-                :src="product.imageCover"
+                :src="product.thumbnail"
                 alt=""
                 :style="`transition: 0.5s all ease-in-out; scale: ${
                   isHovering ? 1.1 : 1
@@ -48,8 +50,8 @@
               <span style="font-weight: bold; color: red">
                 ${{
                   Math.ceil(
-                    product.price - 5
-                    // (product.price / 100) * product.discountPercentage
+                    product.price -
+                      (product.price / 100) * product.discountPercentage
                   )
                 }}</span
               >

@@ -10,14 +10,14 @@
           <div class="image">
             <v-hover v-slot="{ isHovering, props }">
               <img
-                :src="category.image"
+                :src="category.thumbnail"
                 alt=""
                 :style="`scale:${isHovering ? 1.1 : 1}`"
                 v-bind="props"
               />
             </v-hover>
           </div>
-          <v-card-text>{{ category.name }}</v-card-text>
+          <v-card-text>{{ category.category }}</v-card-text>
         </v-card>
       </v-col>
     </v-row>

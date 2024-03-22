@@ -8,8 +8,8 @@ export const categoriesModule = defineStore("categoriesModule", {
   actions: {
     async getCategories() {
       axios
-        .get("http://localhost:8000/api/v1/categories")
-        .then((data) => (this.categories = data.data.data))
+        .get("http://dummyjson.com/products")
+        .then((data) => (this.categories = data.data.products.slice(0, 12)))
         .catch((err) => console.log(err));
     },
   },
