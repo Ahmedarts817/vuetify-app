@@ -12,6 +12,7 @@
   <TopOffers />
   <ProductSwiper :products="products" />
   <TopCategories :categories="categories" />
+  <NewProducts :products="newProducts" />
   <ShopWithUs />
 </template>
 <script>
@@ -21,6 +22,7 @@ import TopOffers from "@/components/homepage/TopOffers.vue";
 import ProductSwiper from "@/components/homepage/ProductSwiper.vue";
 import TopCategories from "@/components/homepage/TopCategories.vue";
 import ShopWithUs from "@/components/homepage/ShopWithUs.vue";
+import NewProducts from "@/components/homepage/NewProducts.vue";
 import { productsModule } from "@/stores/products";
 import { categoriesModule } from "@/stores/categories";
 import { mapState, mapActions } from "pinia";
@@ -32,9 +34,11 @@ export default {
     ProductSwiper,
     TopCategories,
     ShopWithUs,
+    NewProducts,
   },
   computed: {
     ...mapState(productsModule, ["products"]),
+    ...mapState(productsModule, ["newProducts"]),
     ...mapState(categoriesModule, ["categories"]),
   },
   methods: {
