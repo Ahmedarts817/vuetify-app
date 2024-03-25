@@ -5,6 +5,9 @@ export const productsModule = defineStore("productsModule", {
   state: () => ({
     products: [],
     newProducts: [],
+    smartphones: [],
+    fragrances: [],
+    groceries: [],
   }),
   actions: {
     async getProducts() {
@@ -15,6 +18,15 @@ export const productsModule = defineStore("productsModule", {
           this.products = data.data.products;
           this.newProducts = data.data.products.filter((el) => {
             return el.category === "laptops";
+          });
+          this.smartphones = data.data.products.filter((el) => {
+            return el.category === "smartphones";
+          });
+          this.fragrances = data.data.products.filter((el) => {
+            return el.category === "fragrances";
+          });
+          this.groceries = data.data.products.filter((el) => {
+            return el.category === "groceries";
           });
         })
         .catch((err) => console.log(err));

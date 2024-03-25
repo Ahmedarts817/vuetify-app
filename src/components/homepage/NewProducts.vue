@@ -3,7 +3,15 @@
     <v-container fluid>
       <h3 class="mb-5">New Products</h3>
       <v-row>
-        <v-col cols="7">
+        <v-col cols="7" v-if="!products.length" class="pt-14">
+          <v-row
+            ><v-col cols="4" v-for="num in 3" :key="num">
+              <v-skeleton-loader
+                type="image, article, button"
+              ></v-skeleton-loader> </v-col
+          ></v-row>
+        </v-col>
+        <v-col cols="7" v-else class="pt-14">
           <swiper
             navigation
             :modules="modules"
@@ -83,13 +91,14 @@
 <script>
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation, Autoplay } from "swiper/modules";
+import { VSkeletonLoader } from "vuetify/lib/components/index.mjs";
 //swiper sttyles
 import "swiper/css";
 import "swiper/css/navigation";
 
 export default {
   props: ["products"],
-  components: { Swiper, SwiperSlide },
+  components: { Swiper, SwiperSlide, VSkeletonLoader },
   setup() {
     return {
       modules: [Navigation, Autoplay],

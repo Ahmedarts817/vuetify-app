@@ -10,9 +10,26 @@
   </div>
   <TheFatures />
   <TopOffers />
-  <ProductSwiper :products="products" />
+  <ProductSwiper :products="products" title="Flashdeals" color="black" />
   <TopCategories :categories="categories" />
   <NewProducts :products="newProducts" />
+
+  <QualityFeatures />
+  <ProductSwiper :products="smartphones" title="Smartphones" color="red" />
+  <v-container fluid
+    ><img src="../assets/images/tv-banner.webp" alt=""
+  /></v-container>
+  <ProductSwiper :products="fragrances" title="Fragrancies" color="black" />
+  <v-container fluid class="d-flex">
+    <v-col cols="6">
+      <img class="w-100" src="../assets/images/band-left-cover.webp" alt=""
+    /></v-col>
+    <v-col cols="6">
+      <img class="w-100" src="../assets/images/band-right-cover.webp" alt=""
+    /></v-col>
+  </v-container>
+  <ProductSwiper :products="groceries" title="Groceries" color="red" />
+
   <ShopWithUs />
 </template>
 <script>
@@ -23,6 +40,7 @@ import ProductSwiper from "@/components/homepage/ProductSwiper.vue";
 import TopCategories from "@/components/homepage/TopCategories.vue";
 import ShopWithUs from "@/components/homepage/ShopWithUs.vue";
 import NewProducts from "@/components/homepage/NewProducts.vue";
+import QualityFeatures from "@/components/homepage/QualityFeatures.vue";
 import { productsModule } from "@/stores/products";
 import { categoriesModule } from "@/stores/categories";
 import { mapState, mapActions } from "pinia";
@@ -35,11 +53,15 @@ export default {
     TopCategories,
     ShopWithUs,
     NewProducts,
+    QualityFeatures,
   },
   computed: {
     ...mapState(productsModule, ["products"]),
+    ...mapState(productsModule, ["smartphones"]),
     ...mapState(productsModule, ["newProducts"]),
     ...mapState(categoriesModule, ["categories"]),
+    ...mapState(productsModule, ["fragrances"]),
+    ...mapState(productsModule, ["groceries"]),
   },
   methods: {
     ...mapActions(productsModule, ["getProducts"]),
