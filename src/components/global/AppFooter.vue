@@ -1,5 +1,5 @@
 <template>
-  <div class="app-footer">
+  <div class="app-footer" style="background-color: #eee">
     <v-footer :app="true" absolute>
       <v-container>
         <div class="subscribe text-center">
@@ -20,13 +20,14 @@
               <v-card-title style="font-weight: bold" class="mb-5"
                 >Shop</v-card-title
               >
-              <v-card-text>Electronics</v-card-text>
-              <v-card-text>Computers and laptops</v-card-text>
-              <v-card-text> Mobiles and tablets</v-card-text>
-              <v-card-text>Home applisances</v-card-text>
-              <v-card-text>Groceries</v-card-text>
-              <v-card-text>Home furniture</v-card-text>
-              <v-card-text>Special offers</v-card-text>
+              <v-card-text v-for="category in categories" :key="category">
+                <router-link
+                  :to="{ name: 'category', params: { id: category } }"
+                  style="text-decoration: none !important; color: black"
+                >
+                  {{ category.name }}
+                </router-link>
+              </v-card-text>
             </v-card></v-col
           >
           <v-col cols="3"
@@ -47,7 +48,7 @@
           <v-col cols="3"
             ><v-card elevation="0">
               <v-card-title style="font-weight: bold" class="mb-5"
-                >Custoker service
+                >Customer service
               </v-card-title>
               <v-card-text>Search terms </v-card-text>
               <v-card-text>Sdvanced search</v-card-text>
@@ -112,23 +113,64 @@
               <span>Ellamart@google.com</span></v-card-text
             >
             <ul
-              style="list-style: none; font-size: 30px"
+              style="list-style: none; font-size: 30px; gap: 2px"
               class="d-flex text-center justify-center mt-5"
             >
-              <li class="bg-darken-1">
-                <v-icon class="me-2">mdi-facebook</v-icon>
+              <li
+                class="bg-grey-darken-3 rounded-circle d-flex justify-center pa-1"
+              >
+                <v-icon color="white" size="small">mdi-facebook</v-icon>
               </li>
-              <li><v-icon class="me-2">mdi-twitter</v-icon></li>
-              <li><v-icon class="me-2">mdi-youtube</v-icon></li>
-              <li><v-icon class="me-2">mdi-pinterest</v-icon></li>
-              <li><v-icon class="me-2">mdi-wikipedia</v-icon></li>
+              <li
+                class="bg-grey-darken-3 rounded-circle d-flex justify-center pa-1"
+              >
+                <v-icon color="white" size="small">mdi-twitter</v-icon>
+              </li>
+              <li
+                class="bg-grey-darken-3 rounded-circle d-flex justify-center pa-1"
+              >
+                <v-icon color="white" size="small">mdi-youtube</v-icon>
+              </li>
+              <li
+                class="bg-grey-darken-3 rounded-circle d-flex justify-center pa-1"
+              >
+                <v-icon color="white" size="small">mdi-pinterest</v-icon>
+              </li>
+              <li
+                class="bg-grey-darken-3 rounded-circle d-flex justify-center pa-1"
+              >
+                <v-icon color="white" size="small">mdi-wikipedia</v-icon>
+              </li>
             </ul>
           </v-col>
         </v-row>
+        <div class="copyright bg-white" style="background-color: #fff">
+          All rigths resrved &copy; {{ new Date().getFullYear() }}
+        </div>
       </v-container>
     </v-footer>
   </div>
 </template>
+<script>
+import { categoriesModule } from "@/stores/categories";
+import { mapState, mapActions } from "pinia";
+export default {
+  data() {
+    return {
+      date: Date.now(),
+    };
+  },
+  computed: {
+    ...mapState(categoriesModule, ["categories"]),
+  },
+  methods: {
+    ...mapActions(categoriesModule, ["getCategories"]),
+  },
+  async mounted() {
+    await this.getCategories();
+  },
+};
+</script>
 <style scoped lang="scss">
 .form {
   input[type="email"] {

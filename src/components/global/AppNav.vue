@@ -64,14 +64,14 @@
         <v-row>
           <v-col cols="7">
             <ul class="links d-flex justify-space-between align-center">
-              <li>Theme Demo</li>
-              <li>Shop</li>
-              <li>Product</li>
-              <li>New in</li>
-              <li>Must have</li>
-              <li>Collections</li>
-              <li>Pages</li>
-              <li>Buy Ella</li>
+              <li v-for="category in categories" :key="category">
+                <router-link
+                  :to="{ name: 'category', params: { id: category } }"
+                  style="text-decoration: none !important; color: white"
+                >
+                  {{ category.name }}
+                </router-link>
+              </li>
             </ul>
           </v-col>
           <v-col cols="2"></v-col>
@@ -128,6 +128,8 @@
   </div>
 </template>
 <script>
+import { categoriesModule } from "@/stores/categories";
+import { mapState, mapActions } from "pinia";
 export default {
   data: () => ({
     selectedLang: [
@@ -303,6 +305,13 @@ export default {
     openCart() {
       this.Emitter.emit("openCart");
     },
+    ...mapActions(categoriesModule, ["getCategories"]),
+  },
+  computed: {
+    ...mapState(categoriesModule, ["categories"]),
+  },
+  async mounted() {
+    await this.getCategories();
   },
 };
 </script>

@@ -8,6 +8,7 @@ export const productsModule = defineStore("productsModule", {
     smartphones: [],
     fragrances: [],
     groceries: [],
+    product: "",
   }),
   actions: {
     async getProducts() {
@@ -30,6 +31,12 @@ export const productsModule = defineStore("productsModule", {
           });
         })
         .catch((err) => console.log(err));
+    },
+    async getOneProduct(id) {
+      await axios.get(`http://dummyjson.com/products/${id}`).then((data) => {
+        console.log(data);
+        this.product = data.data;
+      });
     },
   },
 });

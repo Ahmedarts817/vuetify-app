@@ -68,14 +68,13 @@
                       }}</span
                     >
                   </p>
-                  <v-btn
-                    class="my-2 pa-2"
-                    variant="outlined"
-                    size="large
-                    "
-                    rounded="xl"
-                    >choose options</v-btn
+                  <router-link
+                    :to="{ name: 'product', params: { id: product.id } }"
                   >
+                    <v-btn class="my-2" variant="outlined" rounded="xl"
+                      >choose options</v-btn
+                    >
+                  </router-link>
                 </v-card-text>
               </v-card>
             </swiper-slide>

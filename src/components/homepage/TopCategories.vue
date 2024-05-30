@@ -5,39 +5,51 @@
   <h2 class="text-center py-5 text-black">Top Categories</h2>
   <v-container fluid class="px-15">
     <v-row>
-      <v-col cols="2" v-for="category in categories" :key="category.id">
+      <v-col v-if="!categories" cols="12">
+        <v-row>
+          <v-col cols="2" v-for="num in 6" :key="num">
+            <v-skeleton-loader
+              type="image"
+              class="rounded-bell"
+            ></v-skeleton-loader>
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col v-else cols="2" v-for="category in categories" :key="category">
         <v-card :elevation="0">
           <div class="image">
-            <v-hover v-slot="{ isHovering, props }">
-              <img
-                :src="category.thumbnail"
-                alt=""
-                :style="`scale:${isHovering ? 1.1 : 1}`"
-                v-bind="props"
-              />
-            </v-hover>
+            <router-link
+              :to="{ name: 'category', params: { id: category } }"
+              style="text-decoration: none !important"
+            >
+              <a>{{ category.name }}</a>
+            </router-link>
           </div>
-          <v-card-text>{{ category.category }}</v-card-text>
         </v-card>
       </v-col>
     </v-row>
   </v-container>
 </template>
 <script>
+import { RouterLink } from "vue-router";
+import { VSkeletonLoader } from "vuetify/lib/components/index.mjs";
+
 export default {
   props: ["categories"],
+  components: { VSkeletonLoader },
 };
 </script>
 <style scoped lang="scss">
 .image {
   background-color: #eee;
-  padding: 20px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  img {
-    width: 80%;
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  .text {
     cursor: pointer;
     transition: 0.4s ease-in-out;
   }
